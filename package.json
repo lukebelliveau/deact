@@ -6,7 +6,9 @@
   "scripts": {
     "test": "mocha-webpack --webpack-config webpack.config-test.js \"test/**/*.spec.js\"",
     "test:watch": "mocha-webpack --webpack-config webpack.config-test.js --watch \"test/**/*.spec.js\"",
-    "devserver": "webpack-dev-server --hot --progress --colors --host 0.0.0.0 --port 3000"
+    "devserver": "webpack-dev-server --hot --progress --colors --host 0.0.0.0 --port 3000",
+    "lint": "eslint src/* test/*",
+    "lint:fix": "eslint -- --fix src/* test/*"
   },
   "repository": {
     "type": "git",
@@ -32,6 +34,12 @@
     "chai-enzyme": "^0.6.1",
     "enzyme": "^2.8.0",
     "express": "^4.15.2",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-mocha": "^4.9.0",
+    "eslint-plugin-react": "^6.10.3",
     "mocha": "^3.2.0",
     "mocha-webpack": "^0.7.0",
     "react-addons-test-utils": "^15.4.2",

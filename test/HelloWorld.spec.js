@@ -10,7 +10,7 @@ describe('Hello World', () => {
   chai.use(chaiEnzyme());
 
   it('should render a greeting', () => {
-    const helloWorld = shallow(<HelloWorld/>);
+    const helloWorld = shallow(<HelloWorld />);
 
     expect(helloWorld).to.contain('Hello World!');
   });
