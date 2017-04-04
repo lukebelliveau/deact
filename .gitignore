@@ -48,3 +48,4 @@ fabric.properties
 
 #me
 node_modules/
+dist/
