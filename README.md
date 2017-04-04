@@ -4,6 +4,8 @@ Barebones react app built from scratch. I'm hoping my commit history will be use
 
 Includes webpack/babel, tests (chai/mocha/enzyme), eslint (airbnb), webpack-dev-server, and a few other things already configured.
 
+served to http://localhost:3000.
+
 <h3>scripts</h3>
 prefix with `yarn` or `npm run`
 

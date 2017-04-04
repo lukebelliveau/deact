@@ -12,5 +12,8 @@
   "bugs": {
     "url": "https://github.com/lukebelliveau/react-webapp-starterkit/issues"
   },
-  "homepage": "https://github.com/lukebelliveau/react-webapp-starterkit#readme"
+  "homepage": "https://github.com/lukebelliveau/react-webapp-starterkit#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
 }
