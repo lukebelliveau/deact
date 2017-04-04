@@ -1,0 +1,16 @@
+{
+  "name": "react-webapp-starter-kit",
+  "version": "1.0.0",
+  "description": "A barebones React webapp development environment, with logical commits so you can learn to make it from scratch.",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukebelliveau/react-webapp-starterkit.git"
+  },
+  "author": "Luke Belliveau",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lukebelliveau/react-webapp-starterkit/issues"
+  },
+  "homepage": "https://github.com/lukebelliveau/react-webapp-starterkit#readme"
+}
