@@ -1,18 +1,19 @@
-# Barebones React Webapp
+# React Reconciler Demo
 
-Barebones react app built from scratch. I'm hoping my commit history will be useful for those looking to learn about bootstrapping a React webapp.
+inside `src/` is a very simple implementation of React's stack reconciler, and a stand-in for
+ReactDOM's render() method.
 
-Includes webpack/babel, tests (chai/mocha/enzyme), eslint (airbnb), webpack-dev-server, and a few other things already configured.
+This is much different than the actual implementation, and was meant to demonstrate the concepts described in the [implementation notes](https://facebook.github.io/react/contributing/implementation-notes.html).
 
-served to http://localhost:3000.
+`FakeReact.js` contains methods to mount Host and Composite elements, ultimately returning a tree of DOM nodes.
+
+`FakeReactDOM`, most importantly, contains the render() method that attaches your React tree to the DOM.
+
+`renderDOM.jsx` contains some custom React elements and renders them in different ways.
 
 <h3>scripts</h3>
 prefix with `yarn` or `npm run`
 
+bundle it up with `yarn webpack`
+
 run: `yarn start`
-
-test: `yarn test` or `yarn twatch` for test watcher
-
-webpack-dev-server: `yarn server`
-
-lint: `yarn lint`, fix with `yarn lint:fix`
