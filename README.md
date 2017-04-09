@@ -7,7 +7,7 @@ This is much different than the actual implementation, and was meant to demonstr
 
 `FakeReact.js` contains methods to mount Host and Composite elements, ultimately returning a tree of DOM nodes.
 
-`FakeReactDOM`, most importantly, contains the render() method that attaches your React tree to the DOM.
+`FakeReactDOM.js`, most importantly, contains the render() method that attaches your React tree to the DOM.
 
 `renderDOM.jsx` contains some custom React elements and renders them in different ways.
 
