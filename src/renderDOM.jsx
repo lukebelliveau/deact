@@ -1,4 +1,3 @@
-import FakeReactDom from './FakeReactDOM';
 /*
  REACT STACK RECONCILER EXAMPLE
  This is a basic demo of some core concepts explained in React's
@@ -15,15 +14,8 @@ import FakeReactDom from './FakeReactDOM';
  the logic of the reconciler, and not that of ReactDOM.
 
  As of now, this does not support class elements or updates.
-
-
-/*
- CUSTOM COMPONENTS
- ***************************************
- ***************************************
- */
-
-//Hello and HelloReact consts resemble the output of a React.createElement() call
+*/
+import FakeReactDom from './FakeReactDOM';
 
 /*
  const Hello = ({ name }) => (

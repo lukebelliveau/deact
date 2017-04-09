@@ -5,7 +5,7 @@ class FakeReact {
   }
 
   mountFunctionalComposite(element) {
-    //this will mount functional composite components (like HelloReact, AppAs*)
+    //this will mount functional composite components (like HelloReact, AppAs*) from ./renderDOM.jsx.
     //examples in these comments trace the results of calling mountFunctionalComposite(HelloReact())
     var type = element.type;
     /*
@@ -31,7 +31,7 @@ class FakeReact {
   }
 
   mountHost (element)  {
-    //mounts Host elements, like Hello, which is of type <div>
+    //mounts Host elements, like renderDOM.jsx's Hello, which is of type <div>
     //examples in these comments trace the results of calling mountHost(Hello(props))
     var type = element.type;
     var props = element.props;

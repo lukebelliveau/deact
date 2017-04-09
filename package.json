@@ -1,25 +1,22 @@
 {
-  "name": "react-webapp-starter-kit",
+  "name": "react-reconciler-demo",
   "version": "1.0.0",
-  "description": "A barebones React webapp development environment, with logical commits so you can learn to make it from scratch.",
+  "description": "Manual implementation of React and ReactDOM. Far inferior to the real version, and implemented much differently - this is intended to demonstrate React's stack reconciler.",
   "main": "server.js",
   "scripts": {
     "test": "mocha-webpack --webpack-config webpack.config-test.js \"test/**/*.spec.js\"",
-    "test:watch": "mocha-webpack --webpack-config webpack.config-test.js --watch \"test/**/*.spec.js\"",
     "devserver": "webpack-dev-server --hot --progress --colors --host 0.0.0.0 --port 3000",
-    "lint": "eslint src/* test/*",
-    "lint:fix": "eslint -- --fix src/* test/*"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lukebelliveau/react-webapp-starterkit.git"
+    "url": "git+https://github.com/lukebelliveau/react-reconciler-demo.git"
   },
   "author": "Luke Belliveau",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lukebelliveau/react-webapp-starterkit/issues"
+    "url": "https://github.com/lukebelliveau/react-reconciler-demo/issues"
   },
-  "homepage": "https://github.com/lukebelliveau/react-webapp-starterkit#readme",
+  "homepage": "https://github.com/lukebelliveau/react-reconciler-demo#readme",
   "dependencies": {
     "express": "^4.15.2"
   },
