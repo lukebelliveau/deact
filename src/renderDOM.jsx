@@ -15,7 +15,7 @@
 
  As of now, this does not support class elements or updates.
 */
-import FakeReactDom, { mountTree } from './FakeReactDOM';
+import FakeReactDOM from './FakeReactDOM';
 
 /*
  const Hello = ({ name }) => (
@@ -65,11 +65,25 @@ const Header = () => ({
   }
 })
 
-
 /*
- RENDER FUNCTIONS
- explanation at bottom
- */
+const AppAsElement = () => (
+  <div>
+    <Header />
+    <HelloReact />
+  </div>
+);
+TRANSPILES TO......
+
+const AppAsElement = React.createElement(
+  'div',
+  null,
+  [
+    Header(),
+    HelloReact()
+  ]
+);
+WHICH RETURNS AN OBJECT LIKE THE ONE CREATED HERE...
+*/
 const AppAsElement = () => ({
   $$typeof: Symbol.for('react.element'),
   type: 'div',
@@ -80,45 +94,8 @@ const AppAsElement = () => ({
     ]
   }
 });
-const renderElementWithFunctionCall = () => FakeReactDom.render(
+
+FakeReactDOM.render(
   AppAsElement(),
   document.getElementById('root')
 )
-//OR:
-const renderElementWithJSX = () => FakeReactDom.render(
-  <AppAsElement />,
-  document.getElementById('root')
-);
-
-const AppAsJSX = () => (
-  <div>
-    <Header />
-    <HelloReact />
-  </div>
-)
-const renderJSXWithHelloReactComponent = () => FakeReactDom.render(
-  <AppAsJSX />,
-  document.getElementById('root')
-);
-
-const AppAsJSX2 = () => (
-  <div>
-    <Header />
-    <Hello name="React" />
-  </div>
-)
-const renderJSXWithHelloComponentAndProp = () => FakeReactDom.render(
-  <AppAsJSX2 />,
-  document.getElementById('root')
-);
-
-/*
- Each of these calls ultimately render the same thing to the page.
- Comment all but one, or uncomment multiple to see the same thing rendered multiple times.
- I made these different render functions to demonstrate the different ways you can
- instantiate elements, and how in the end, they are just plain old objects.
- */
-renderElementWithFunctionCall();
-renderElementWithJSX();
-// renderJSXWithHelloReactComponent();
-// renderJSXWithHelloComponentAndProp();

@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/lukebelliveau/react-reconciler-demo#readme",
   "dependencies": {
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "react": "^15.5.3"
   },
   "devDependencies": {
     "babel-core": "^6.24.0",
