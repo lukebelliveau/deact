@@ -1,4 +1,4 @@
-import FakeReactDOM from './FakeReactDOM';
+import FakeReactDOM from './FakeReactDOM/FakeReactDOM';
 
 /*
  REACT STACK RECONCILER EXAMPLE

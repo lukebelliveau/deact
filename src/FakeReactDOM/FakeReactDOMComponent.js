@@ -1,22 +1,11 @@
-import FakeReact from './FakeReact';
+import { renderDOMNode } from './FakeReactDOM';
 
-const renderDOMNode = (type, props) => {
-  var node = document.createElement(type);
-  Object.keys(props).forEach(propName => {
-    if(propName !== 'children') {
-      node.setAttribute(propName, props[propName]);
-    }
-  });
-
-  return node;
-}
-
-export class DOMComponent {
-  constructor(element) {
+export default class DOMComponent {
+  constructor(element, react) {
     this.currentElement = element;
     this.renderedChildren = [];
     this.node = null;
-    this.react = fakeReact;
+    this.react = react;
   }
 
   getPublicInstance() {
@@ -51,23 +40,4 @@ export class DOMComponent {
     // Return the DOM node as mount result
     return node;
   }
-}
-
-const fakeReact = new FakeReact(DOMComponent);
-
-export const render = (element, containerNode) => {
-  // Create the top-level internal instance
-  var rootComponent = fakeReact.instantiateComponent(element);
-
-  // Mount the top-level component into the container
-  var node = rootComponent.mount();
-  containerNode.appendChild(node);
-
-  // Return the public instance it provides
-  var publicInstance = rootComponent.getPublicInstance();
-  return publicInstance;
-}
-
-export default {
-  render,
 }

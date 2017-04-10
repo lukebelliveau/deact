@@ -6,24 +6,7 @@ const isClass = (type) => {
   );
 }
 
-export default class FakeReact {
-  constructor(injectedDOMComponent) {
-    this.DOMComponent = injectedDOMComponent;
-  }
-
-  instantiateComponent(element) {
-    var type = element.type;
-    if (typeof type === 'function') {
-      // User-defined components
-      return new CompositeComponent(element, this);
-    } else if (typeof type === 'string') {
-      // Platform-specific components
-      return new this.DOMComponent(element)
-    }
-  }
-}
-
-class CompositeComponent {
+export default class CompositeComponent {
   constructor(element, react) {
     this.currentElement = element;
     this.renderedComponent = null;
