@@ -1,12 +1,22 @@
 import FakeReact from './FakeReact';
 
-const fakeReact = new FakeReact();
+const renderDOMNode = (type, props) => {
+  var node = document.createElement(type);
+  Object.keys(props).forEach(propName => {
+    if(propName !== 'children') {
+      node.setAttribute(propName, props[propName]);
+    }
+  });
+
+  return node;
+}
 
 export class DOMComponent {
   constructor(element) {
     this.currentElement = element;
     this.renderedChildren = [];
     this.node = null;
+    this.react = fakeReact;
   }
 
   getPublicInstance() {
@@ -30,7 +40,7 @@ export class DOMComponent {
     // // Collect DOM nodes they return on mount
     children.forEach(childElement => {
       if(childElement.type) {
-        const childNode = fakeReact.instantiateComponent(childElement).mount();
+        const childNode = this.react.instantiateComponent(childElement).mount();
         node.appendChild(childNode);
       } else {
         const childNode = document.createTextNode(childElement);
@@ -43,16 +53,7 @@ export class DOMComponent {
   }
 }
 
-const renderDOMNode = (type, props) => {
-  var node = document.createElement(type);
-  Object.keys(props).forEach(propName => {
-    if(propName !== 'children') {
-      node.setAttribute(propName, props[propName]);
-    }
-  });
-
-  return node;
-}
+const fakeReact = new FakeReact(DOMComponent);
 
 export const render = (element, containerNode) => {
   // Create the top-level internal instance

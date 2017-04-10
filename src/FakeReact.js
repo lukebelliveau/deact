@@ -9,8 +9,10 @@ const isClass = (type) => {
 }
 
 export default class FakeReact {
-  constructor() {
+  constructor(injectedDOMComponent) {
     this.DOMComponent = DOMComponent;
+    //for full injection:
+    //this.DOMComponent = injectedDOMComponent
   }
 
   instantiateComponent(element) {
@@ -20,8 +22,11 @@ export default class FakeReact {
       return new CompositeComponent(element, this.instantiateComponent);
     } else if (typeof type === 'string') {
       // Platform-specific components
-      //ERROR HAPPENS HERE
       return new DOMComponent(element)
+      /*
+      ***WHY DOES THIS FAIL?
+      return new this.DOMComponent(element)
+      */
     }
   }
 }
@@ -75,7 +80,3 @@ class CompositeComponent {
     return renderedComponent.mount();
   }
 }
-
-// export default {
-//   CompositeComponent,
-// };
