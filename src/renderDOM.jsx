@@ -4,10 +4,10 @@
  Implementation Notes docs:
  https://facebook.github.io/react/contributing/implementation-notes.html
 
- This is divided into three sections
- -ReactDOM-esque render methods
- -Reconciler methods for mounting functional composite and DOM host elements
- -Two custom components, Hello (host element) and HelloReact (functional composite element)
+ 3 main files
+ -FakeReact.js: Stack Reconciler-esque classes for mounting functional composite and DOM host elements
+ -FakeReactDOM.js: has methods to render DOM host nodes and top-level React nodes
+ -renderDOM.jsx: custom components and renders of these components
 
  Please note that while this demonstrates the basic logic of React's stack reconciler,
  the real implementation is much different. Also, my intention is to demonstrate
