@@ -19,15 +19,15 @@ import FakeReactDom from './FakeReactDOM';
 
 /*
  const Hello = ({ name }) => (
- <div>name</div>
+  <div>name</div>
  )
  TRANSPILES TO......
 
- const Hello = (name) =>
+ const Hello = ({ name }) =>
  React.createElement(
- 'div',
- null,
- 'Hello ' + name + '!'
+   'div',
+   null,
+   'Hello ' + name + '!'
  )
  WHICH RETURNS AN OBJECT LIKE...
  */
@@ -44,8 +44,8 @@ const Hello = ({ name }) => ({
  TRANSPILES TO......
 
  const HelloReact = React.createElement(
- Hello,
- {name: 'React'}
+   Hello,
+   {name: 'React'}
  )
  WHICH RETURNS AN OBJECT LIKE...
  */
