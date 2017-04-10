@@ -1,5 +1,3 @@
-import { DOMComponent } from './FakeReactDOM';
-
 const isClass = (type) => {
   // React.Component subclasses have this flag
   return (
@@ -10,33 +8,27 @@ const isClass = (type) => {
 
 export default class FakeReact {
   constructor(injectedDOMComponent) {
-    this.DOMComponent = DOMComponent;
-    //for full injection:
-    //this.DOMComponent = injectedDOMComponent
+    this.DOMComponent = injectedDOMComponent;
   }
 
   instantiateComponent(element) {
     var type = element.type;
     if (typeof type === 'function') {
       // User-defined components
-      return new CompositeComponent(element, this.instantiateComponent);
+      return new CompositeComponent(element, this);
     } else if (typeof type === 'string') {
       // Platform-specific components
-      return new DOMComponent(element)
-      /*
-      ***WHY DOES THIS FAIL?
       return new this.DOMComponent(element)
-      */
     }
   }
 }
 
 class CompositeComponent {
-  constructor(element, instantiateComponent) {
+  constructor(element, react) {
     this.currentElement = element;
     this.renderedComponent = null;
     this.publicInstance = null;
-    this.instantiateComponent = instantiateComponent;
+    this.react = react;
   }
 
   getPublicInstance() {
@@ -73,10 +65,9 @@ class CompositeComponent {
     // Instantiate the child internal instance according to the element.
     // It would be a DOMComponent for <div /> or <p />,
     // and a CompositeComponent for <App /> or <Button />:
-    var renderedComponent = this.instantiateComponent(renderedElement);
-    this.renderedComponent = renderedComponent;
+    this.renderedComponent = this.react.instantiateComponent(renderedElement);
 
     // Mount the rendered output
-    return renderedComponent.mount();
+    return this.renderedComponent.mount();
   }
 }
