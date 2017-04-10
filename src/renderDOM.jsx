@@ -1,3 +1,5 @@
+import FakeReactDOM from './FakeReactDOM';
+
 /*
  REACT STACK RECONCILER EXAMPLE
  This is a basic demo of some core concepts explained in React's
@@ -12,10 +14,7 @@
  Please note that while this demonstrates the basic logic of React's stack reconciler,
  the real implementation is much different. Also, my intention is to demonstrate
  the logic of the reconciler, and not that of ReactDOM.
-
- As of now, this does not support class elements or updates.
 */
-import FakeReactDOM from './FakeReactDOM';
 
 /*
  const Hello = ({ name }) => (
