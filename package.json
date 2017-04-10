@@ -4,6 +4,7 @@
   "description": "Manual implementation of React and ReactDOM. Far inferior to the real version, and implemented much differently - this is intended to demonstrate React's stack reconciler.",
   "main": "server.js",
   "scripts": {
+    "start": "yarn webpack && node server.js",
     "test": "mocha-webpack --webpack-config webpack.config-test.js \"test/**/*.spec.js\"",
     "devserver": "webpack-dev-server --hot --progress --colors --host 0.0.0.0 --port 3000"
   },

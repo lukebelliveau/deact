@@ -1,6 +1,8 @@
-import FakeReact, { instantiateComponent } from './FakeReact';
+import FakeReact from './FakeReact';
 
-class DOMComponent {
+const fakeReact = new FakeReact();
+
+export class DOMComponent {
   constructor(element) {
     this.currentElement = element;
     this.renderedChildren = [];
@@ -25,16 +27,10 @@ class DOMComponent {
     var node = renderDOMNode(type, props);
     this.node = node;
 
-    // Create and save the contained children.
-    // Each of them can be a DOMComponent or a CompositeComponent,
-    // depending on whether the element type is a string or a function.
-    // var renderedChildren = children.map(instantiateComponent);
-    // this.renderedChildren = renderedChildren;
-
     // // Collect DOM nodes they return on mount
     children.forEach(childElement => {
       if(childElement.type) {
-        const childNode = instantiateComponent(childElement, DOMComponent).mount();
+        const childNode = fakeReact.instantiateComponent(childElement).mount();
         node.appendChild(childNode);
       } else {
         const childNode = document.createTextNode(childElement);
@@ -59,10 +55,8 @@ const renderDOMNode = (type, props) => {
 }
 
 export const render = (element, containerNode) => {
-  const fakeReact = new FakeReact(DOMComponent);
-
   // Create the top-level internal instance
-  var rootComponent = instantiateComponent(element, DOMComponent);
+  var rootComponent = fakeReact.instantiateComponent(element);
 
   // Mount the top-level component into the container
   var node = rootComponent.mount();

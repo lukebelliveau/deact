@@ -1,3 +1,5 @@
+import { DOMComponent } from './FakeReactDOM';
+
 const isClass = (type) => {
   // React.Component subclasses have this flag
   return (
@@ -6,33 +8,30 @@ const isClass = (type) => {
   );
 }
 
-export const instantiateComponent = (element, DOMComponent) => {
-  var type = element.type;
-  if (typeof type === 'function') {
-    // User-defined components
-    return new CompositeComponent(element, DOMComponent);
-  } else if (typeof type === 'string') {
-    // Platform-specific components
-    return new DOMComponent(element);
-  }
-}
-
 export default class FakeReact {
-  constructor(DOMComponent) {
+  constructor() {
     this.DOMComponent = DOMComponent;
   }
 
   instantiateComponent(element) {
-    instantiateComponent(element, this.DOMComponent)
+    var type = element.type;
+    if (typeof type === 'function') {
+      // User-defined components
+      return new CompositeComponent(element, this.instantiateComponent);
+    } else if (typeof type === 'string') {
+      // Platform-specific components
+      //ERROR HAPPENS HERE
+      return new DOMComponent(element)
+    }
   }
 }
 
 class CompositeComponent {
-  constructor(element, DOMComponent) {
+  constructor(element, instantiateComponent) {
     this.currentElement = element;
     this.renderedComponent = null;
     this.publicInstance = null;
-    this.DOMComponent = DOMComponent;
+    this.instantiateComponent = instantiateComponent;
   }
 
   getPublicInstance() {
@@ -69,7 +68,7 @@ class CompositeComponent {
     // Instantiate the child internal instance according to the element.
     // It would be a DOMComponent for <div /> or <p />,
     // and a CompositeComponent for <App /> or <Button />:
-    var renderedComponent = instantiateComponent(renderedElement, this.DOMComponent);
+    var renderedComponent = this.instantiateComponent(renderedElement);
     this.renderedComponent = renderedComponent;
 
     // Mount the rendered output
