@@ -46,14 +46,13 @@ class FakeReact {
     children.forEach(childElement => {
 
 
-      let childNode;
       if(childElement.type) {
         //recursively call mount if child elements
-        childNode = this.mount(childElement)
+        const childNode = this.mount(childElement)
         node.appendChild(childNode);
       } else {
         //the Hello component has one child, a string to be placed inside of the <div>
-        childNode = document.createTextNode(childElement);
+        const childNode = document.createTextNode(childElement);
         node.appendChild(childNode)
       }
     });

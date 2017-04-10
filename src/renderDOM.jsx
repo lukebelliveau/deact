@@ -15,7 +15,7 @@
 
  As of now, this does not support class elements or updates.
 */
-import FakeReactDom from './FakeReactDOM';
+import FakeReactDom, { mountTree } from './FakeReactDOM';
 
 /*
  const Hello = ({ name }) => (
@@ -101,8 +101,6 @@ const renderJSXWithHelloReactComponent = () => FakeReactDom.render(
   document.getElementById('root')
 );
 
-
-
 const AppAsJSX2 = () => (
   <div>
     <Header />
@@ -121,6 +119,6 @@ const renderJSXWithHelloComponentAndProp = () => FakeReactDom.render(
  instantiate elements, and how in the end, they are just plain old objects.
  */
 renderElementWithFunctionCall();
-// renderElementWithJSX();
+renderElementWithJSX();
 // renderJSXWithHelloReactComponent();
 // renderJSXWithHelloComponentAndProp();
