@@ -20,49 +20,24 @@ import FakeReactDOM from './FakeReactDOM/FakeReactDOM';
  const Hello = ({ name }) => (
   <div>name</div>
  )
- TRANSPILES TO......
-
- const Hello = ({ name }) =>
- React.createElement(
-   'div',
-   null,
-   'Hello ' + name + '!'
- )
- WHICH RETURNS AN OBJECT LIKE...
  */
-const Hello = ({ name }) => ({
-  $$typeof: Symbol.for('react.element'),
-  type: 'div',
-  props: {
-    children: 'Hello ' + name + '!'
-  },
-});
+const Hello = ({ name }) => (
+    FakeReactDOM.createElement('div', {}, 'Hello ' + name + '!')
+);
 
 /*
  const HelloReact = () => <Hello name='React' />
- TRANSPILES TO......
-
- const HelloReact = React.createElement(
-   Hello,
-   {name: 'React'}
- )
- WHICH RETURNS AN OBJECT LIKE...
  */
-const HelloReact = () => ({
-  $$typeof: Symbol.for('react.element'),
-  type: Hello,
-  props: {
-    name: 'React',
-  },
-})
+const HelloReact = () => (
+    FakeReactDOM.createElement(Hello, { name: 'React' })
+);
 
-const Header = () => ({
-  $$typeof: Symbol.for('react.element'),
-  type: 'h1',
-  props: {
-    children: 'Naive React Reconciler'
-  }
-})
+/*
+ const Header = () => <h1>Naive React Reconciler<h1 />
+ */
+const Header = () => (
+    FakeReactDOM.createElement('h1', {}, 'Naive React Reconciler')
+);
 
 /*
 const AppAsElement = () => (
@@ -71,28 +46,10 @@ const AppAsElement = () => (
     <HelloReact />
   </div>
 );
-TRANSPILES TO......
-
-const AppAsElement = React.createElement(
-  'div',
-  null,
-  [
-    Header(),
-    HelloReact()
-  ]
-);
-WHICH RETURNS AN OBJECT LIKE THE ONE CREATED HERE...
 */
-const AppAsElement = () => ({
-  $$typeof: Symbol.for('react.element'),
-  type: 'div',
-  props: {
-    children: [
-      Header(),
-      HelloReact()
-    ]
-  }
-});
+const AppAsElement = () => (
+    FakeReactDOM.createElement('div', {}, Header(), HelloReact())
+);
 
 FakeReactDOM.render(
   AppAsElement(),

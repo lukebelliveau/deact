@@ -30,6 +30,13 @@ export const render = (element, containerNode) => {
   return publicInstance;
 }
 
+export const createElement = (constructor, props, ...children) => ({
+  $$typeof: Symbol.for('react.element'),
+  type: constructor,
+  props: Object.assign({}, props, { children })
+});
+
 export default {
   render,
+  createElement
 }
