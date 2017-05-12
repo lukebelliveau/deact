@@ -33,9 +33,9 @@ const NameBox = (props) => (
   <input onChange={ props.onChange }></input>
 )
 
-const Compliment = ({ userName }) => (
+const Compliment = (props) => (
   <h1>
-    { userName }, you really are
+    { props.userName }, you really are
     something special. I can't even.
     I love you!
   </h1>
