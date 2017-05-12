@@ -30,7 +30,7 @@ class Greeting extends React.Component {
 }
 
 const NameBox = (props) => (
-  <input onChange={ props.onChange }></input>
+  <input onChange={ props.onChange }/>
 )
 
 const Compliment = ({ userName }) => (
@@ -40,6 +40,32 @@ const Compliment = ({ userName }) => (
     I love you!
   </h1>
 );
+
+const makeAComplimentForShia = () => {
+  const shiaProps = {
+    userName: 'Shia LeBouf',
+  };
+  return Compliment(shiaProps);
+}
+
+const shiasComplimentElement = makeAComplimentForShia();
+// {
+//   type:"h1",
+//   props:{
+//     children:[
+//       "Shia LeBouf",
+//       ", you really are something special. I can't even. I love you!"
+//     ]
+//   },
+//   key:null,
+//   ref:null,
+//   $$typeof:Symbol.for("react.element"),
+//   _owner:null,
+//   _store:{}
+// }
+
+console.log(shiasComplimentElement)
+
 
 ReactDOM.render(
   <App />,
