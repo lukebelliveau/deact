@@ -7,7 +7,9 @@
   "license": "MIT",
   "scripts": {
     "start": "yarn webpack && node server.js",
-    "devserver": "webpack-dev-server --hot --progress --colors --host 0.0.0.0 --port 3000"
+    "devserver": "webpack-dev-server --hot --progress --colors --host 0.0.0.0 --port 3000",
+    "test": "mocha-webpack --webpack-config webpack.config-test.js --require testsetup.js \"test/**/*.spec.js\"",
+    "test:watch": "mocha-webpack --webpack-config webpack.config-test.js --require testsetup.js --watch \"test/**/*.spec.js\""
   },
   "dependencies": {
     "express": "^4.15.2",
@@ -19,6 +21,12 @@
     "babel-loader": "^6.4.1",
     "babel-preset-env": "^1.3.2",
     "babel-preset-react": "^6.23.0",
+    "chai": "^3.5.0",
+    "chai-dom": "^1.4.3",
+    "jsdom": "=9.9.1",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^3.3.0",
+    "mocha-webpack": "^0.7.0",
     "webpack": "^2.3.2",
     "webpack-dev-server": "^2.4.2",
     "webpack-node-externals": "^1.5.4"

@@ -1,47 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const App = () => (
-  <Greeting />
-)
+import Deact, { DOMComponent } from './Deact';
 
-class Greeting extends React.Component {
-  constructor(props) {
-    super(props);
+const Header = (props) => ({
+  type: 'h1',
+  props: {
+    fakeInnerText: props.text
   }
-  updateName(event) {
-    this.setState({
-      name: event.target.value
-    })
+});
+
+const Paragraph = (props) => ({
+  type: 'p',
+  props: {
+    fakeInnerText: props.text
   }
-  componentWillMount() {
-    this.setState({
-      name: 'Hey you'
-    })
+});
+
+const HeaderAndParagraph = (props) => ({
+  type: 'div',
+  props: {
+    children: [
+      Header({ text: props.headerText}),
+      Paragraph({text: props.paragraphText})
+    ]
   }
-  render() {
-    return (
-      <div>
-        <NameBox onChange={(event) => this.updateName(event)}/>
-        <Compliment userName={this.state.name}/>
-      </div>
-    )
-  }
+});
+
+const headerAndParagraphProps = {
+  headerText: 'I am a header!',
+  paragraphText: 'and I am a paragraph!!'
 }
-
-const NameBox = (props) => (
-  <input onChange={ props.onChange }></input>
-)
-
-const Compliment = (props) => (
-  <h1>
-    { props.userName }, you really are
-    something special. I can't even.
-    I love you!
-  </h1>
-);
-
-ReactDOM.render(
-  <App />,
+Deact.render(
+  HeaderAndParagraph(headerAndParagraphProps),
   document.getElementById('root')
-)
+);
