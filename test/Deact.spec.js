@@ -16,17 +16,9 @@ const paragraphElement = {
   type: 'p',
   props: {
     id: idForParagraph,
-    fakeInnerText: textInsideElement
-    /*
-      We're going to cheat here and pretend
-      innerText is a special property of host
-      elements, like <p>innerText</p>.
-      In reality, they are listed in
-      props.children, as commeted out below.
-    */
-    // children: [
-    //   text
-    // ]
+    children: [
+      textInsideElement
+    ]
   }
 }
 
@@ -40,14 +32,9 @@ const paragraphElement = {
 const headerElement = {
   type: 'h1',
   props: {
-    fakeInnerText: textInsideElement
-    /*
-      Cheating with the native child elements
-      again. Sorry!
-    */
-    // children: [
-    //   text
-    // ]
+    children: [
+      textInsideElement
+    ]
   }
 }
 
@@ -99,27 +86,33 @@ describe('(Class) DOMComponent', () => {
 
         expect(getNodeMountedToUI(domNode)).to.contain(`<p id="${idForParagraph}">`)
       })
-
-      it('should set the DOM element\s innerHTML to the innerText prop', () => {
-        //NOTE: don't set innerHTML, it's bad, for demo purposes only
-        const domComponent = new DOMComponent(paragraphElement);
-        const domNode = domComponent.mount();
-
-        expect(getNodeMountedToUI(domNode)).to.equal(`<p id="${idForParagraph}">${textInsideElement}</p>`)
-      });
     })
 
     describe('handling child Elements', () => {
-      const divElementWithTwoChildren = {
-        type: 'div',
-        props: {
-          children: [
-            headerElement,
-            paragraphElement
-          ]
-        }
-      };
+      it('should render one string literal child element', () => {
+        const divElementWithOneChild = {
+          type: 'div',
+          props: {
+            children: 'I am a div!'
+          }
+        };
+
+        const domComponent = new DOMComponent(divElementWithOneChild);
+        const domNode = domComponent.mount();
+
+        expect(getNodeMountedToUI(domNode)).to.equal('<div>I am a div!</div>')
+      })
+
       it('should render and attach its children elements', () => {
+        const divElementWithTwoChildren = {
+          type: 'div',
+          props: {
+            children: [
+              headerElement,
+              paragraphElement
+            ]
+          }
+        };
         const domComponent = new DOMComponent(divElementWithTwoChildren);
         const domNode = domComponent.mount();
 

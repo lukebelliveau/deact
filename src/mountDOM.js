@@ -3,34 +3,32 @@ import ReactDOM from 'react-dom';
 
 import Deact, { DOMComponent } from './Deact';
 
-const Header = (props) => ({
-  type: 'h1',
-  props: {
-    fakeInnerText: props.text
-  }
-});
+const Header = (props) => (
+  <h1>
+    { props.text }
+  </h1>
+)
 
-const Paragraph = (props) => ({
-  type: 'p',
-  props: {
-    fakeInnerText: props.text
-  }
-});
+const Paragraph = (props) => (
+  <p>
+    { props.text }
+  </p>
+)
 
-const HeaderAndParagraph = (props) => ({
-  type: 'div',
-  props: {
-    children: [
-      Header({ text: props.headerText}),
-      Paragraph({text: props.paragraphText})
-    ]
-  }
-});
+const HeaderAndParagraph = (props) => (
+  <div>
+    {[
+      Header({ text: props.headerText }),
+      Paragraph({ text: props.paragraphText })
+    ]}
+  </div>
+)
 
 const headerAndParagraphProps = {
   headerText: 'I am a header!',
   paragraphText: 'and I am a paragraph!!'
 }
+
 Deact.render(
   HeaderAndParagraph(headerAndParagraphProps),
   document.getElementById('root')
