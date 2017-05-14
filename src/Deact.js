@@ -30,8 +30,41 @@ export class DOMComponent {
   }
 }
 
+/*
+* Helper function to determine if a composite component type is a function or class.
+* React.Component subclasses have the isReactComponent flag.
+* */
+const isClass = (type) => Boolean(type.prototype) && Boolean(type.prototype.isReactComponent);
+
+export class CompositeComponent {
+  constructor(element) {
+    this.currentElement = element;
+  }
+  mount() {
+    const element = this.currentElement;
+    const type = element.type;
+    const props = element.props;
+    let renderedElement;
+    if(isClass(type)) {
+      const publicInstance = new type(props);
+
+      if(publicInstance.componentWillMount) {
+        publicInstance.componentWillMount();
+      }
+
+      renderedElement = publicInstance.render();
+    }else {
+      renderedElement = type(props);
+    }
+
+    const internalInstance = instantiateComponent(renderedElement);
+    return internalInstance.mount();
+  }
+};
+
 const instantiateComponent = (element) => {
   if(typeof element.type === 'string') return new DOMComponent(element);
+  else if (typeof element.type === 'function') return new CompositeComponent(element);
   else return new MountableString(element);
 };
 
@@ -39,7 +72,7 @@ const instantiateComponent = (element) => {
   Analogous to ReactDOM.render().
 */
 const render = (element, containerNode) => {
-  const instance = new DOMComponent(element);
+  const instance = instantiateComponent(element);
   const domNode = instance.mount();
   containerNode.appendChild(domNode)
 };
