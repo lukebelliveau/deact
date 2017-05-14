@@ -16,8 +16,12 @@ const makeAComplimentForShia = () => {
   return Compliment(shiaProps);
 }
 
-//try commenting out the makeAComplimentForShia() function call and uncommenting the element.
-//We can pass a pure element to ReactDOM.render(), and it will still render!
+/*
+*
+* Try commenting out the makeAComplimentForShia() function call and uncommenting the element.
+* We can pass a pure element to ReactDOM.render(), and it will still render!
+*
+* */
 const shiasComplimentElement =
 makeAComplimentForShia();
 // {
