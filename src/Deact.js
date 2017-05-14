@@ -21,7 +21,7 @@ export class DOMComponent {
 
     //instantiate, mount, and append child elements.
     children.forEach(child => {
-      const childInstance = new DOMComponent(child);
+      const childInstance = instantiateComponent(child);
       const mountedChild = childInstance.mount();
       node.appendChild(mountedChild);
     });
