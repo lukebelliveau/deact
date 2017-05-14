@@ -1,38 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const App = () => (
-  <Greeting />
-)
-
-class Greeting extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  updateName(event) {
-    this.setState({
-      name: event.target.value
-    })
-  }
-  componentWillMount() {
-    this.setState({
-      name: 'Hey you'
-    })
-  }
-  render() {
-    return (
-      <div>
-        <NameBox onChange={(event) => this.updateName(event)}/>
-        <Compliment userName={this.state.name}/>
-      </div>
-    )
-  }
-}
-
-const NameBox = (props) => (
-  <input onChange={ props.onChange }/>
-)
-
 const Compliment = ({ userName }) => (
   <h1>
     { userName }, you really are
@@ -48,7 +16,10 @@ const makeAComplimentForShia = () => {
   return Compliment(shiaProps);
 }
 
-const shiasComplimentElement = makeAComplimentForShia();
+//try commenting out the makeAComplimentForShia() function call and uncommenting the element.
+//We can pass a pure element to ReactDOM.render(), and it will still render!
+const shiasComplimentElement =
+makeAComplimentForShia();
 // {
 //   type:"h1",
 //   props:{
@@ -64,10 +35,7 @@ const shiasComplimentElement = makeAComplimentForShia();
 //   _store:{}
 // }
 
-console.log(shiasComplimentElement)
-
-
 ReactDOM.render(
-  <App />,
+  shiasComplimentElement,
   document.getElementById('root')
 )
