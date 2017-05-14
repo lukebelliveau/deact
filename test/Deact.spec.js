@@ -130,7 +130,7 @@ describe('(Class) DOMComponent', () => {
       });
     });
 
-    describe('handling child Elements', () => {
+    describe.only('handling child Elements', () => {
       it('should mount string literal children inside <span>', () => {
         //given
         const props = { text: 'I am a div!' }

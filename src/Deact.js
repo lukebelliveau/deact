@@ -18,6 +18,16 @@ export class DOMComponent extends Component {
       if(propName !== 'children') node.setAttribute(propName, props[propName])
     });
 
+    let children = props.children || [];
+
+    if(!Array.isArray(children)) children = [children];
+
+    children.forEach(child => {
+      const childInstance = new DOMComponent(child);
+      const mountedChild = childInstance.mount();
+      node.appendChild(mountedChild);
+    });
+
     return node;
   }
 }
