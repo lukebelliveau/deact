@@ -31,7 +31,8 @@ export class DOMComponent {
 }
 
 const instantiateComponent = (element) => {
-
+  if(typeof element.type === 'string') return new DOMComponent(element);
+  else return new MountableString(element);
 };
 
 /*
