@@ -1,7 +1,7 @@
 # __Deact__
 ## React under the hood
 
-*__Please note that this project is in its infancy. The slide deck and curriculum is far from completed.__*
+*__Please note that this project is in its infancy. The slide deck and curriculum are far from completed.__*
 
 #### what
 This repository is for those looking to learn how React works under the hood.
