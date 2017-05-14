@@ -1,11 +1,7 @@
-//IGNORE THIS! helper class for string literals. Sorry!!
-class Component{constructor(element){if(!element.type)this.mount=()=>{const node = document.createElement('span');node.innerHTML = element;return node;};}};
+import MountableString from './MountableString';
 
-export class DOMComponent extends Component {
+export class DOMComponent {
   constructor(element) {
-    //for demo purposes only.
-    super(element);
-
     this.currentElement = element;
   }
 
@@ -25,7 +21,7 @@ export class DOMComponent extends Component {
 
     //instantiate, mount, and append child elements.
     children.forEach(child => {
-      const childInstance = new DOMComponent(child);
+      const childInstance = instantiateComponent(child);
       const mountedChild = childInstance.mount();
       node.appendChild(mountedChild);
     });
@@ -34,15 +30,21 @@ export class DOMComponent extends Component {
   }
 }
 
+const instantiateComponent = (element) => {
+  if(typeof element.type === 'string') return new DOMComponent(element);
+  else return new MountableString(element);
+};
+
 /*
   Analogous to ReactDOM.render().
 */
 const render = (element, containerNode) => {
-  const instance = new DOMComponent(element);
+  const instance = instantiateComponent(element);
   const domNode = instance.mount();
   containerNode.appendChild(domNode)
 };
 
 export default {
   render,
+  instantiateComponent
 }

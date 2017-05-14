@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import assertWithHints from './hintHelper';
 
 import Deact, { DOMComponent } from '../src/Deact';
+import MountableString from '../src/MountableString';
 
 /*
   {
@@ -218,6 +219,31 @@ describe('render()', () => {
   });
 });
 
+describe('instantiateComponent()', () => {
+  it('should return a DOMComponent instance if the element type is a string', () => {
+    //given
+    const element = {
+      type: 'h1'
+    };
+
+    //when
+    const instance = Deact.instantiateComponent(element);
+
+    //then
+    expect(instance).to.eql(new DOMComponent(element));
+  });
+
+  it('should return a MountableString instance if the element has no type', () => {
+    //given
+    const element = 'String literal, like the child of a div';
+
+    //when
+    const instance = Deact.instantiateComponent(element);
+
+    //then
+    expect(instance instanceof MountableString).to.be.true;
+  })
+});
 
 /*
  helper function enabling us to inspect the elements we mount.
