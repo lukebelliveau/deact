@@ -1,6 +1,5 @@
 import React from 'react';
-import chai, { expect } from 'chai';
-import chaiDOM from 'chai-dom';
+import { expect } from 'chai';
 import Deact, { DOMComponent } from '../src/Deact';
 
 /*
@@ -26,7 +25,7 @@ const ParagraphWithIdAndText = (props = {}) => (
     }
   }
 */
-const Header = (props) => (
+const Header = (props = {}) => (
   <h1>
     {props.text}
   </h1>
@@ -57,7 +56,7 @@ const DivWithParagraph = (props = {}) => (
     }
   }
 */
-const DivWithHeaderAndParagraph = (props) => (
+const DivWithHeaderAndParagraph = (props = {}) => (
   <div>
   {[
     Header(props),
@@ -75,46 +74,86 @@ describe('(Class) DOMComponent', () => {
   describe('mount()', () => {
     describe('creating a DOM node by type', () => {
       it('should return a <div> DOM element', () => {
+        //given
         const domComponent = new DOMComponent(DivWithParagraph());
+
+        //when
         const domNode = domComponent.mount();
 
-        expect(getNodeMountedToUI(domNode)).to.contain('</div>')
+        //then
+        const assertion = () =>
+        expect(getNodeMountedToUI(domNode)).to.contain('</div>');
+
+        //hint
+        try{assertion()}catch(a){throw"TypeError"===a.name?new Error('It looks like your DOMNode is having trouble appending to the root. Try returning an HTML element, like this: \n\tdocument.createElement("div").'):a}
       });
 
       it('should return a <p> DOM element', () => {
+        //given
         const domComponent = new DOMComponent(ParagraphWithIdAndText());
+
+        //when
         const domNode = domComponent.mount();
 
+        //then
+        const assertion =
         expect(getNodeMountedToUI(domNode)).to.contain('</p>')
       });
     })
 
     describe('setting attributes on DOM nodes', () => {
       it('should set attributes specified in props', () => {
+        //given
         const props = {
           id: 'anId'
-        }
-        const paragraph = ParagraphWithIdAndText
+        };
         const domComponent = new DOMComponent(ParagraphWithIdAndText(props));
+
+        //when
         const domNode = domComponent.mount();
 
-        expect(getNodeMountedToUI(domNode)).to.contain(`<p id="${props.id}">`)
+        //then
+        const assertion = () =>
+        expect(getNodeMountedToUI(domNode)).to.contain(`<p id="${props.id}">`);
+
+        // //hint
+        try {
+          assertion()
+        } catch (e) {
+          if (e.name === 'AssertionError') throw new Error(
+            'Host element props (other than children) are meant to be attached straight to the DOM node as '+
+            'attributes. Try a setAttribute() call on your DOM element.'
+          );
+
+          else throw e;
+        };
       })
     })
 
     describe('handling child Elements', () => {
       it('should render one string literal child element', () => {
+        //given
         const props = { text: 'I am a div!' }
         const DivWithChildText = (props) => (
           <div>
             { props.text }
           </div>
         )
-
         const domComponent = new DOMComponent(DivWithChildText(props));
+
+        //when
         const domNode = domComponent.mount();
 
+        //then
+        const assertion = () =>
         expect(getNodeMountedToUI(domNode)).to.equal(`<div>${props.text}</div>`)
+
+        //hint
+        try {
+          assertion()
+        } catch(e) {
+          throw e
+        }
       })
 
       it('should render and attach its child elements', () => {
@@ -169,7 +208,7 @@ describe('render()', () => {
 const getNodeMountedToUI = (DOMNode) => {
   root.appendChild(DOMNode);
   return root.innerHTML;
-}
+};
 
 const root = document.getElementById('root');
 const mountedByDeact = root.innerHTML;

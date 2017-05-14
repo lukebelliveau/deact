@@ -1,3 +1,4 @@
-node_modules
-dist
-.tmp
+node_modules/
+dist/
+.tmp/
+.idea/
