@@ -21,7 +21,7 @@ export class DOMComponent {
 
     //instantiate, mount, and append child elements.
     children.forEach(child => {
-      const childInstance = instantiateComponent(child);
+      const childInstance = new DOMComponent(child);
       const mountedChild = childInstance.mount();
       node.appendChild(mountedChild);
     });
@@ -31,15 +31,14 @@ export class DOMComponent {
 }
 
 const instantiateComponent = (element) => {
-  if(typeof element.type === 'string') return new DOMComponent(element);
-  else return new MountableString(element);
+
 };
 
 /*
   Analogous to ReactDOM.render().
 */
 const render = (element, containerNode) => {
-  const instance = instantiateComponent(element);
+  const instance = new DOMComponent(element);
   const domNode = instance.mount();
   containerNode.appendChild(domNode)
 };
