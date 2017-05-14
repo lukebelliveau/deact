@@ -74,7 +74,7 @@ describe('(Class) DOMComponent', () => {
   });
 
   describe('mount()', () => {
-    describe('creating a DOM node by type', () => {
+    describe.only('creating a DOM node by type', () => {
       it('should return a <div> DOM element', () => {
         //given
         const domComponent = new DOMComponent(DivWithParagraph());

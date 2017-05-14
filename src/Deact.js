@@ -6,11 +6,12 @@ export class DOMComponent extends Component {
     //for demo purposes only.
     super(element);
 
-
+    this.currentElement = element;
   }
 
   mount() {
-
+    const element = this.currentElement;
+    return document.createElement(element.type);
   }
 }
 
