@@ -24,9 +24,7 @@ export class DOMComponent extends Component {
   Analogous to ReactDOM.render().
 */
 const render = (element, containerNode) => {
-  const mountedTree = new DOMComponent(element).mount();
 
-  containerNode.appendChild(mountedTree);
 };
 
 export default {

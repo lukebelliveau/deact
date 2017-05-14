@@ -12,7 +12,7 @@ import Deact, { DOMComponent } from '../src/Deact';
   }
 */
 const ParagraphWithIdAndText = (props = {}) => (
-  <p id={props.id}>
+  <p id={props.id} name={props.name}>
     {props.text}
   </p>
 )
@@ -85,7 +85,7 @@ describe('(Class) DOMComponent', () => {
         expect(getNodeMountedToUI(domNode)).to.contain('</div>');
 
         //hint
-        try{assertion()}catch(a){throw"TypeError"===a.name?new Error('It looks like your DOMNode is having trouble appending to the root. Try returning an HTML element, like this: \n\tdocument.createElement("div").'):a}
+        try{assertion()}catch(a){throw"TypeError"===a.name?new Error(e + '\n\t'+'**HINT**:Your DOMNode is having trouble appending to the root. Try returning an HTML element, like this: \n\tdocument.createElement("div").'):a}
       });
 
       it('should return a <p> DOM element', () => {
@@ -99,13 +99,14 @@ describe('(Class) DOMComponent', () => {
         const assertion =
         expect(getNodeMountedToUI(domNode)).to.contain('</p>')
       });
-    })
+    });
 
     describe('setting attributes on DOM nodes', () => {
       it('should set attributes specified in props', () => {
         //given
         const props = {
-          id: 'anId'
+          id: 'anId',
+          name: 'aName'
         };
         const domComponent = new DOMComponent(ParagraphWithIdAndText(props));
 
@@ -114,21 +115,22 @@ describe('(Class) DOMComponent', () => {
 
         //then
         const assertion = () =>
-        expect(getNodeMountedToUI(domNode)).to.contain(`<p id="${props.id}">`);
+        expect(getNodeMountedToUI(domNode)).to.contain(`<p id="${props.id}" name="${props.name}">`);
 
-        // //hint
+        //hint
         try {
           assertion()
         } catch (e) {
           if (e.name === 'AssertionError') throw new Error(
-            'Host element props (other than children) are meant to be attached straight to the DOM node as '+
+            e + '\n\t'+
+            '**HINT**: Host Element props (OTHER THAN CHILDREN) are meant to be attached straight to the DOM node as '+
             'attributes. Try a setAttribute() call on your DOM element.'
           );
 
           else throw e;
         };
       })
-    })
+    });
 
     describe('handling child Elements', () => {
       it('should render one string literal child element', () => {
@@ -152,9 +154,21 @@ describe('(Class) DOMComponent', () => {
         try {
           assertion()
         } catch(e) {
-          throw e
+          throw new Error(
+            '\n\t' +
+            '**WARNING**: this part of the tutorial is GARBAGE. Let\'s chat if you get stuck.\n\t'+
+            'Child elements should be:\n\t'+
+              '1. Instantiated with new DOMComponent()\n\t'+
+              '2. Mounted with mount(). Recursion!\n\t'+
+              '3. Appended to the node with appendChild().\n\n\t'+
+              'The case of string literals is a bit special. That\'s why we have '+
+              'the hand-wavey Component class at the top - Sorry!! \n\tFor this example, append the '+
+              'DOM node\'s innerHTML to the result of the mount call:\n\t\t'+
+              'childNode = child.mount()\n\t\t'+
+              'node.innerHTML += childNode'
+          )
         }
-      })
+      });
 
       it('should render and attach its child elements', () => {
         const props = {
