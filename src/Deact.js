@@ -11,7 +11,14 @@ export class DOMComponent extends Component {
 
   mount() {
     const element = this.currentElement;
-    return document.createElement(element.type);
+    const props = element.props;
+    const node = document.createElement(element.type);
+
+    Object.keys(props).forEach(propName => {
+      if(propName !== 'children') node.setAttribute(propName, props[propName])
+    });
+
+    return node;
   }
 }
 

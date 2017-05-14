@@ -106,7 +106,7 @@ describe('(Class) DOMComponent', () => {
       });
     });
 
-    describe('setting attributes on DOM nodes', () => {
+    describe.only('setting attributes on DOM nodes', () => {
       it('should set attributes specified in props', () => {
         //given
         const props = {
