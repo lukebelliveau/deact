@@ -36,7 +36,9 @@ export class DOMComponent extends Component {
   Analogous to ReactDOM.render().
 */
 const render = (element, containerNode) => {
-
+  const instance = new DOMComponent(element);
+  const domNode = instance.mount();
+  containerNode.appendChild(domNode)
 };
 
 export default {

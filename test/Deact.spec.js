@@ -188,7 +188,7 @@ describe('(Class) DOMComponent', () => {
   });
 });
 
-describe('render()', () => {
+describe.only('render()', () => {
   it('should attach a DOM node, described by an Element, to the container DOM node', () => {
     //given
     const props = {
