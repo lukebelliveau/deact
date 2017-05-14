@@ -74,7 +74,7 @@ describe('(Class) DOMComponent', () => {
   });
 
   describe('mount()', () => {
-    describe.only('creating a DOM node by type', () => {
+    describe('creating a DOM node by type', () => {
       it('should return a <div> DOM element', () => {
         //given
         const domComponent = new DOMComponent(DivWithParagraph());
@@ -106,7 +106,7 @@ describe('(Class) DOMComponent', () => {
       });
     });
 
-    describe.only('setting attributes on DOM nodes', () => {
+    describe('setting attributes on DOM nodes', () => {
       it('should set attributes specified in props', () => {
         //given
         const props = {
@@ -130,7 +130,7 @@ describe('(Class) DOMComponent', () => {
       });
     });
 
-    describe.only('handling child Elements', () => {
+    describe('handling child Elements', () => {
       it('should mount string literal children inside <span>', () => {
         //given
         const props = { text: 'I am a div!' }
@@ -188,7 +188,7 @@ describe('(Class) DOMComponent', () => {
   });
 });
 
-describe.only('render()', () => {
+describe('render()', () => {
   it('should attach a DOM node, described by an Element, to the container DOM node', () => {
     //given
     const props = {
