@@ -250,7 +250,7 @@ describe('Deact', () => {
 
   describe('(Class) CompositeComponent', () => {
     describe('mounting functional components', () => {
-      it('should return a DOM tree on mount() call', () => {
+      it.only('should return a DOM tree on mount() call', () => {
         //given
         const props = { text: 'headerText '};
         const FunctionalCompositeComponent = (props) => (
@@ -272,68 +272,68 @@ describe('Deact', () => {
         //hint
         assertWithHints(assertion,compositeFunctionalDOMTreeHint)
       });
+    });
 
-      describe('mounting class components', () => {
-        it.only('should return a DOM tree on mount() call', () => {
-          //given
-          const props = { text: 'headerText' };
-          class ClassyCompositeComponent extends React.Component {
-            render() {
-              return <Header text={ this.props.text }/>
-            }
+    describe('mounting class components', () => {
+      it.only('should return a DOM tree on mount() call', () => {
+        //given
+        const props = { text: 'headerText' };
+        class ClassyCompositeComponent extends React.Component {
+          render() {
+            return <Header text={ this.props.text }/>
           }
-          const instantiatedComponent = new CompositeComponent(<ClassyCompositeComponent {...props} />);
+        }
+        const instantiatedComponent = new CompositeComponent(<ClassyCompositeComponent {...props} />);
 
-          //when
-          //try to ignore the try/catch stuff - it's for printing hints.
-          let mountedComponent;
-                                                                                                            try{
+        //when
+        //try to ignore the try/catch stuff - it's for printing hints.
+        let mountedComponent;
+        try{
           mountedComponent = instantiatedComponent.mount();
-                                                                                                            }catch(e){{throw new Error(e+'\n\t\t'+classAsFunctionHint);}}
-          //then
-          const assertion = () =>
+        }catch(e){{throw new Error(e+'\n\t\t'+classAsFunctionHint);}}
+        //then
+        const assertion = () =>
           expect(getNodeMountedToUI(mountedComponent)).to.equal(
             '<h1>' +
-              `<span>${props.text}</span>`+
+            `<span>${props.text}</span>`+
             '</h1>'
           );
 
-          //hint
-          assertWithHints(assertion);
+        //hint
+        assertWithHints(assertion);
 
-        });
+      });
 
-        it('should call componentWillMount() before mounting component', () => {
-          //given
-          const props = { text: 'headerText' };
-          const textSetBeforeMount = 'new text';
-          class ClassyCompositeComponent extends React.Component {
-            constructor() {
-              super(props);
-            }
-            componentWillMount() {
-              this.props.newText = textSetBeforeMount
-            }
-            render() {
-              return <Header text={ this.props.newText }/>
-            }
+      it('should call componentWillMount() before mounting component', () => {
+        //given
+        const props = { text: 'headerText' };
+        const textSetBeforeMount = 'new text';
+        class ClassyCompositeComponent extends React.Component {
+          constructor() {
+            super(props);
           }
-          const instantiatedComponent = new CompositeComponent(<ClassyCompositeComponent {...props} />);
+          componentWillMount() {
+            this.props.newText = textSetBeforeMount
+          }
+          render() {
+            return <Header text={ this.props.newText }/>
+          }
+        }
+        const instantiatedComponent = new CompositeComponent(<ClassyCompositeComponent {...props} />);
 
-          //when
-          const mountedComponent = instantiatedComponent.mount();
+        //when
+        const mountedComponent = instantiatedComponent.mount();
 
-          //then
-          const assertion = () =>
+        //then
+        const assertion = () =>
           expect(getNodeMountedToUI(mountedComponent)).to.equal(
             '<h1>' +
             `<span>${textSetBeforeMount}</span>`+
             '</h1>'
           );
 
-          //hint
-          assertWithHints(assertion)
-        })
+        //hint
+        assertWithHints(assertion)
       })
     })
   });
