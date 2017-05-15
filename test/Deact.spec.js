@@ -219,7 +219,7 @@ describe('render()', () => {
   });
 });
 
-describe('instantiateComponent()', () => {
+describe.only('instantiateComponent()', () => {
   it('should return a DOMComponent instance if the element type is a string', () => {
     //given
     const element = {
