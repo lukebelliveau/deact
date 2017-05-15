@@ -49,8 +49,13 @@ export class CompositeComponent {
     if(isClass(element.type)) {
       //instantiate public instance of class component
       const publicInstance = new type(props);
+
+      if(publicInstance.componentWillMount) {
+        publicInstance.componentWillMount();
+      }
       //render class component
       renderedElement = publicInstance.render();
+
     } else {
       //render functional component
       renderedElement = element.type(props);

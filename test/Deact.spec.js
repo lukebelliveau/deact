@@ -274,7 +274,7 @@ describe('Deact', () => {
       });
 
       describe('mounting class components', () => {
-        it.only('should return a DOM tree on mount() call', () => {
+        it('should return a DOM tree on mount() call', () => {
           //given
           const props = { text: 'headerText' };
           class ClassyCompositeComponent extends React.Component {
@@ -332,7 +332,7 @@ describe('Deact', () => {
           );
 
           //hint
-          assertWithHints(assertion)
+          assertWithHints(assertion, 'Call componentWillMount() on the public instance before rendering it: new type(props).componentWillMount()')
         })
       })
     })
