@@ -43,11 +43,22 @@ export class CompositeComponent {
   mount() {
     const element = this.currentElement;
     const props = element.props;
+    const type = element.type;
 
-    const renderedElement = element.type(props);
-    const instance = instantiateComponent(renderedElement);
+    let renderedElement;
+    if(isClass(element.type)) {
+      //instantiate public instance of class component
+      const publicInstance = new type(props);
+      //render class component
+      renderedElement = publicInstance.render();
+    } else {
+      //render functional component
+      renderedElement = element.type(props);
+    }
 
-    return instance.mount();
+    const internalInstance = instantiateComponent(renderedElement);
+
+    return internalInstance.mount();
   }
 };
 

@@ -250,7 +250,7 @@ describe('Deact', () => {
 
   describe('(Class) CompositeComponent', () => {
     describe('mounting functional components', () => {
-      it.only('should return a DOM tree on mount() call', () => {
+      it('should return a DOM tree on mount() call', () => {
         //given
         const props = { text: 'headerText '};
         const FunctionalCompositeComponent = (props) => (
@@ -274,7 +274,7 @@ describe('Deact', () => {
       });
 
       describe('mounting class components', () => {
-        it('should return a DOM tree on mount() call', () => {
+        it.only('should return a DOM tree on mount() call', () => {
           //given
           const props = { text: 'headerText' };
           class ClassyCompositeComponent extends React.Component {
@@ -289,7 +289,7 @@ describe('Deact', () => {
           let mountedComponent;
                                                                                                             try{
           mountedComponent = instantiatedComponent.mount();
-                                                                                                            }catch(e){if(e.message === "Cannot call a class as a function"){throw new Error(e+'\n\t\t'+classAsFunctionHint);}else throw e}
+                                                                                                            }catch(e){{throw new Error(e+'\n\t\t'+classAsFunctionHint);}}
           //then
           const assertion = () =>
           expect(getNodeMountedToUI(mountedComponent)).to.equal(
