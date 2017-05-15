@@ -303,7 +303,7 @@ describe('Deact', () => {
 
         });
 
-        it('should call componentWillMount() before mounting component', () => {
+        it('should call componentWillMount() before rendering component', () => {
           //given
           const props = { text: 'headerText' };
           const textSetBeforeMount = 'new text';
