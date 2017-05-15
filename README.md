@@ -22,7 +22,7 @@ Run the following command at project root to track all remote branches, which ar
 
 then run `yarn install`.
 
-Follow along with [this slide deck](https://docs.google.com/a/thoughtworks.com/presentation/d/1ylwz_h6AxcJDuLLxcrhzVnG_gjdru9byCsRsFmX5uQ4/edit?usp=sharing). You will be prompted when it is time to start a new lesson in the repository.
+Follow along with [this slide deck](https://docs.google.com/a/thoughtworks.com/presentation/d/1ylwz_h6AxcJDuLLxcrhzVnG_gjdru9byCsRsFmX5uQ4/edit?usp=sharing). You will be prompted when it is time to start coding.
 
 Lessons are generally in a test-driven fashion: for each lesson, you will have a suite of tests that you must pass. However, some branches are simply examples.
 
