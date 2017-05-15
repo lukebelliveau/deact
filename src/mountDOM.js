@@ -1,7 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-import Deact, { DOMComponent } from './Deact';
+import Deact from './Deact';
 
 const Header = (props) => (
   <h1>
