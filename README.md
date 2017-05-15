@@ -16,6 +16,11 @@ Lesson 2, static-render-dom.
 I am working on making branching checkpoints inside of lessons, so you can follow along by checking out x.1, x.2, etc, but this is incomplete.
 
 #### how
+run the following command at project root to track all remote branches, which are used as "chapters":
+
+`git branch -a | grep -v HEAD | perl -ne 'chomp($_); s|^\*?\s*||; if (m|(.+)/(.+)| && not $d{$2}) {print qq(git branch --track $2 $1/$2\n)} else {$d{$_}=1}' | csh -xfs`
+
+
 Follow along with [this slide deck](https://docs.google.com/a/thoughtworks.com/presentation/d/1ylwz_h6AxcJDuLLxcrhzVnG_gjdru9byCsRsFmX5uQ4/edit?usp=sharing). You will be prompted when it is time to start a new lesson in the repository.
 
 Lessons are generally in a test-driven fashion: for each lesson, you will have a suite of tests that you must pass. However, some branches are simply examples.
