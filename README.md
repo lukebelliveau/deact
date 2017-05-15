@@ -29,3 +29,24 @@ Lessons are generally in a test-driven fashion: for each lesson, you will have a
 Once all tests are passing in a suite, you will have built a new piece of Deact. Run `yarn devserver` to see the fruits of your labor in a browser.
 
 This is based on React's stack reconciler. This implementation has been overhauled with React Fiber, but the concepts are similar.
+
+### Table of Contents
+**1. The Anatomy of an Element**
+
+**2. DOMComponent**
+- 2.1: blank slate
+- 2.2:
+  - create DOM elements by type
+  - set HTML attributes from props
+- 2.3:
+  - mount string literal children inside a < span />
+  - render and attach child elements
+- 2.4:
+  - render() method: attach a DOM node to container node, like ReactDOM.render()
+  
+**3. instantiateComponent()**
+- 3.1: blank slate
+- 3.2: build the instantiateComponent() method
+- 3.3: use instantiateComponent() in DOMComponent
+
+**4. CompositeComponent**
