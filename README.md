@@ -50,3 +50,7 @@ This is based on React's stack reconciler. This implementation has been overhaul
 - 3.3: use instantiateComponent() in DOMComponent
 
 **4. CompositeComponent**
+- 4.1: blank slate
+- 4.2: mounting functional components
+- 4.3: mounting class components
+- 4.4: calling componentWillMount() before rendering class components
