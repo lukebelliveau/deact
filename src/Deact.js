@@ -41,7 +41,12 @@ export class CompositeComponent {
     this.currentElement = element;
   }
   mount() {
+    const element = this.currentElement;
+    const props = element.props;
+    const renderedElement = this.currentElement.type(props);
+    const instance = instantiateComponent(renderedElement);
 
+    return instance.mount();
   }
 };
 

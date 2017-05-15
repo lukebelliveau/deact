@@ -250,7 +250,7 @@ describe('Deact', () => {
 
   describe('(Class) CompositeComponent', () => {
     describe('mounting functional components', () => {
-      it('should return a DOM tree on mount() call', () => {
+      it.only('should return a DOM tree on mount() call', () => {
         //given
         const props = { text: 'headerText '};
         const FunctionalCompositeComponent = (props) => (
